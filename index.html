@@ -1,0 +1,181 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" intial-scale="1.0">
+        <link rel="stylesheet" href="style.css">
+    
+        <style>
+            body {
+                counter-reset: Serial;
+                /* Set the Serial counter to 0 */
+            }
+    
+    
+    
+            tr td:first-child:before {
+                counter-increment: Serial;
+                /* Increment the Serial counter */
+                content: counter(Serial);
+                /* Display the counter */
+            }
+    
+            table {
+                font-family: 'Times New Roman', Times, serif;
+                border-collapse: collapse;
+                width: 50%;
+    
+            }
+    
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+    
+            .grp-btn {
+                text-align: center;
+            }
+    
+            .grp-btn button {
+                padding: 6px;
+                background: #6b6bb1;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h2 align="center">HTML_TABLE</h2>
+        <table align="center" id="myTable">
+            <tr>
+                <th>SL.NO</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>CITY</th>
+                <th>COUNTRY</th>
+            </tr>
+    
+    
+    
+    
+    
+        </table>
+        <br>
+        <div class="grp-btn">
+    
+            <button onclick="addBottomRow()">Add row to bottom</button>
+            <button onclick="addRowTop()">Add row to top</button>
+        </div>
+        <script>
+    
+            var tableData = [
+                {
+                    firstName: "Swathi",
+                    lastName: "Maddela",
+                    city: "Hyderabad",
+                    country: "India"
+                },
+                {
+                    firstName: "Uday",
+                    lastName: "Appam",
+                    city: "Karimnagar",
+                    country: "India"
+                },
+                {
+                    firstName: "Jhon",
+                    lastName: "Rovelli",
+                    city: "Warangal",
+                    country: "Canada"
+                },
+                {
+                    firstName: "Bosch",
+                    lastName: "Chang",
+                    city: "Mumbai",
+                    country: "Australia"
+                },
+                {
+                    firstName: "Helen",
+                    lastName: "Bennet",
+                    city: "Banglore",
+                    country: "Germany"
+                }
+            ];
+    
+            function buildTable(tblData, isFist) {
+                var table = document.getElementById("myTable");
+                tblData.forEach((row, index) => {
+                    var tr = document.createElement('tr');
+    
+                    var tdSlNo = tr.appendChild(document.createElement('td'));
+                    tdSlNo.innerHTML = "";
+    
+                    var tdFirstname = tr.appendChild(document.createElement('td'));
+                    tdFirstname.innerHTML = row.firstName;
+    
+                    var tdLasstname = tr.appendChild(document.createElement('td'));
+                    tdLasstname.innerHTML = row.lastName;
+    
+                    var tdCity = tr.appendChild(document.createElement('td'));
+                    tdCity.innerHTML = row.city;
+    
+                    var tdCountry = tr.appendChild(document.createElement('td'));
+                    tdCountry.innerHTML = row.country;
+                    if (isFist) {
+                        table.insertBefore(tr, table.rows[1]);
+                    } else {
+                        table.appendChild(tr);
+                    }
+    
+                });
+    
+    
+            }
+    
+            buildTable(tableData);
+            function addBottomRow() {
+                var firstName = prompt("Please enter your first name");
+                var lastName = prompt("Please enter your last name");
+                var city = prompt("Please enter your city");
+                var country = prompt("Please enter your country");
+    
+                tableData.push({
+                    firstName: firstName,
+                    lastName: lastName,
+                    city: city,
+                    country: country
+                });
+                buildTable([{
+                    firstName: firstName,
+                    lastName: lastName,
+                    city: city,
+                    country: country
+                }]);
+            }
+    
+            function addRowTop() {
+                var firstName = prompt("Please enter your first name");
+                var lastName = prompt("Please enter your last name");
+                var city = prompt("Please enter your city");
+                var country = prompt("Please enter your country");
+                //tableData.push(
+                var row = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    city: city,
+                    country: country
+                };
+                buildTable([row], true);
+    
+    
+    
+            }
+        </script>
+    </body>
+    
+                       </html>
+ 
